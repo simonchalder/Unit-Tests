@@ -6,7 +6,7 @@ namespace Unit_Tests
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Arithmatic NumObject = new Arithmatic();
         }
     }
 }
