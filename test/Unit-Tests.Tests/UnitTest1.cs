@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Unit_Tests.Tests
@@ -132,6 +133,35 @@ namespace Unit_Tests.Tests
             Assert.True(result.GetType() == typeof(string)); // An overloaded method returns the expected result depending on the parameter type given
             Assert.True(result2.GetType() == typeof(int));
             Assert.True(result3.GetType() == typeof(int[]));
+        }
+
+        //--------------LIST TESTS------------------------------------------
+
+        [Fact]
+        public void ArrayAddedToListPlacesItemsInList() // Adding an array to a list adds the array items not the array itself
+        {
+            List<string> myList = new List<string>();
+
+            string[] myArray = new string[3]{"item1", "item2", "item3"};
+
+            myList.AddRange(myArray);
+
+            Assert.Equal(myList[0], "item1");
+            Assert.Equal(myList[1], "item2");
+            Assert.Equal(myList[2], "item3");
+        }
+
+        [Fact]
+        public void ListInsertionIsCorrect() // Adding an item to a specified index in a list moves other items up one index place
+        {
+            List<string> myList = new List<string>();
+
+            string[] myArray = new string[3]{"item1", "item2", "item3"};
+            myList.AddRange(myArray);
+            myList.Insert(1, "newItem");
+
+            Assert.Equal(myList[1], "newItem");
+            Assert.Equal(myList[2], "item2");
         }
     }
 }
